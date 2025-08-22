@@ -1,0 +1,92 @@
+#catalog h1 {
+  padding: 4.5rem;
+  background-image: url(../images/coffees/256505890.png);
+  border-radius: 0.5rem;
+
+  text-align: center;
+  font-size: 2rem;
+}
+
+#catalog .articles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr)); /* https://css-tricks.com/a-responsive-grid-layout-with-no-media-queries/ */
+  gap: 2rem;
+
+  margin-top: 5rem;
+}
+
+/* Bonus : hide all articles after the 3rd one until the user clicks the button to display more */
+#catalog .only-display-3-articles article:nth-child(n+4) {
+  display: none;
+}
+
+#catalog article {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  border-radius: 0.5rem;
+}
+
+#catalog article img {
+  height: 12rem;
+  width: 100%;
+  object-fit: cover;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+#catalog article div {
+  padding: 2rem;
+  text-align: end;
+}
+
+#catalog article h2 {
+  margin-bottom: 1rem;
+}
+
+#catalog article a {
+  margin-top: 1rem;
+}
+
+#catalog button {
+  margin: 2rem auto 0 auto;
+}
+
+.article {
+  position: relative;
+}
+
+.article.article.out-of-stock img {
+  filter: grayscale(100%);
+  opacity: 0.5;
+}
+
+.article.out-of-stock::after {
+  content: "Rupture de stock";
+  position: absolute;
+  top: 1rem;
+  right: 0;
+  background: linear-gradient(90deg, rgb(165, 0, 0), rgb(105, 0, 0));
+  color: white;
+  padding: .5rem 1rem;
+  font-weight: bold;
+  border-radius: 5rem 0 0 5rem;
+  font-size: 1rem;
+  text-align: center; 
+}
+
+.hidden {
+  display: none;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+
+  select {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+  }
+}

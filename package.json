@@ -1,0 +1,34 @@
+{
+  "name": "ocoffee",
+  "version": "1.0.0",
+  "description": "ocoffee, boutique de café à Hauts-de-Cloques par les frère Pepper",
+  "main": "index.js",
+  "type": "module",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "node --watch --env-file=.env index.js",
+    "start": "node --env-file=.env index.js",
+    "db:create": "psql -h localhost -U ocoffee -d ocoffee -f ./data/create-tables.sql",
+    "db:seed": "psql -h localhost -U ocoffee -d ocoffee -f ./data/seed-data.sql",
+    "db:reset": "npm run db:create && npm run db:seed"
+  },
+  "keywords": [
+    "café",
+    "ocoffee",
+    "boutique",
+    "Hauts-de-Cloques"
+  ],
+  "author": "contact@oclock.io",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "pg": "^8.16.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.27.0",
+    "eslint": "^9.27.0"
+  }
+}

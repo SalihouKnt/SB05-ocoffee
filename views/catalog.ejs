@@ -1,0 +1,65 @@
+<%- include('./partials/head') %>
+
+  <main>
+    <script defer src="/js/catalog.js"></script>
+
+    <section id="catalog">
+      <h1>Notre catalogue</h1>
+
+      <% if (locals.coffees && Array.isArray(locals.coffees) && locals.coffees.length > 0) { %>
+        <div class="filters">
+
+          <div class="filter">
+            <label for="filter-category">Filtrer par catégorie :</label>
+            <select id="filter-category" name="filter-category" aria-label="Filtrer les produits par catégorie">
+              <%
+                const categories = new Set();
+                for (const coffee of coffees) {
+                  for (const category of coffee.categories) {
+                    categories.add(category);
+                  }
+                }
+              %>
+              <option value="all">Toutes</option>
+              <% for (const category of categories) { %>
+                <option value="<%= category %>"><%= category %></option>
+              <% } %>
+            </select>
+          </div>
+
+        </div>
+        <div class="articles only-display-3-articles" id="articles-list">
+          
+          <% for( const coffee of coffees) { %>
+            <article
+              class="article<%= !coffee.available ? " out-of-stock" : "" %>"
+              data-id="<%= coffee.id %>"
+              data-categories="<%= coffee.categories.join(" ") %>"
+              data-origin="<%= coffee.origin %>"
+            >
+              <img src="/images/coffees/<%= coffee.reference %>.png" alt="<%= coffee.name %>">
+              <div>
+                <h2><%= coffee.name %></h2>
+                <p>Origine <%= coffee.origin %></p>
+                <p><%= coffee.price_per_kg %> €/kg</p>
+                <a class="button-outline" href="/coffee/<%= coffee.id %>" aria-label="Voir le détail : <%= coffee.name %>">Voir le détail</a>
+              </div>
+            </article>
+          <% } %>
+  
+        </div>
+  
+        <button class="button" id="see-all-products-button">
+          Voir tous les produits
+        </button>
+       
+      <% } else { %>
+
+        <p>Aucun produit trouvé...</p>
+
+      <% } %>
+
+    </section>
+  </main>
+
+<%- include('./partials/foot') %>

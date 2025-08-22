@@ -1,0 +1,71 @@
+<%- include('./partials/head') %>
+
+ <% if (locals.coordinates) { %>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // set map height
+      const mapElement = document.getElementById('map');
+      mapElement.style.height = '300px';
+      
+      // initialize the map on the "map" div with a given center and zoom
+      let map = L.map('map').setView([<%= coordinates.lat %>, <%= coordinates.lng %>], 3);
+
+      // create the tile layer with correct attribution
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 10,
+          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }).addTo(map);
+
+      // create a marker and add it to the map
+      let marker = L.marker([<%= coordinates.lat %>, <%= coordinates.lng %>]).addTo(map);
+
+    });
+  </script>
+ <% } %>
+
+  <main>
+    <% if (locals.coffee) { %>
+
+      
+      <article class="product">
+        <div class="product-info">
+          <h1><%= coffee.name %></h1>
+          <p class="coffee-reference">ref. <%= coffee.reference %></p>
+          <p class="coffee-origin">Origine <%= coffee.origin %></p>
+          <p class="coffee-price"><%= coffee.price_per_kg %> €/kg</p>
+          <p class="coffee-description"><%= coffee.description %></p>
+          <p class="coffee-category">Catégorie(s) :</p>
+          <ul class="coffee-categories">
+            <% for (const category of coffee.categories) { %>
+              <li><%= category %></li>
+            <% } %>
+          </ul>
+          <p class="coffee-available">
+            <span class="coffee-available-label">Disponibilité :</span>
+            <% if (coffee.available) { %>
+              <span class="available">✅ En stock</span>
+            <% } else { %>
+              <span class="not-available">❌ Rupture de stock</span>
+            <% } %>
+          </p>
+
+          <div id="map"></div>
+
+        </div>
+
+        <div class="product-image">
+          <img src="/images/coffees/<%= coffee.reference %>.png" alt="<%= coffee.name %>">
+        </div>
+
+
+        </article>
+
+    <% } else { %>
+
+        <p>Aucun produit trouvé...</p>
+
+    <% } %>
+
+  </main>
+
+  <%- include('./partials/foot') %>

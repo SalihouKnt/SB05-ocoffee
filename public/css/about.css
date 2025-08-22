@@ -1,0 +1,40 @@
+/* ======== About Page ======== */
+
+#ambiance,
+#savoir-faire {
+    display: flex;
+    gap: 4rem;
+    align-items: flex-start;
+
+    @media screen and (max-width: 1280px) {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    > * {
+        flex: 1;
+    }
+
+    h2 {
+        font-size: 1.7rem;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        margin-bottom: 2rem;
+    }
+
+    img {
+        max-width: 100%;
+        border-radius: .5rem;
+        display: block;
+    }
+
+    .intro {
+        font-size: 1.3rem;
+        font-style: italic;
+        border-left: 5px solid var(--color-dark);
+        padding-left: 1rem;
+    }
+
+}
