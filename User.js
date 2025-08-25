@@ -27,4 +27,3 @@ même s’ils partagent les mêmes propriétés et méthodes.
 
 Réutilisabilité : on peut créer autant d’instances 
 que nécessaire sans réécrire la structure.
-
